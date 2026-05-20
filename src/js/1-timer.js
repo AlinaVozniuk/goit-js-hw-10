@@ -48,7 +48,7 @@ function handleStart() {
     startBtn.disabled = true;
     timeData.disabled = true;
 
-    setInterval(() => {
+    timer = setInterval(() => {
         const nowTime = Date.now();
         const deltaDate = timeSelected - nowTime;
 
@@ -59,7 +59,7 @@ function handleStart() {
             timeData.disabled = false;
             return;
         }
-        const time = convertMs(deltaTime);
+        const time = convertMs(deltaDate);
 
         updateTimer(time);
     }, 1000);
