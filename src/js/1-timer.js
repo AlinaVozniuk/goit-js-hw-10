@@ -10,7 +10,7 @@ import "izitoast/dist/css/iziToast.min.css";
 const timeData = document.querySelector("#datetime-picker");
 const startBtn = document.querySelector("button[data-start]");
 
-const dataDay = document.querySelector("[data-days]");
+const dataDays = document.querySelector("[data-days]");
 const dataHours = document.querySelector("[data-hours]");
 const dataMinutes = document.querySelector("[data-minutes]");
 const dataSeconds = document.querySelector("[data-seconds]");
@@ -56,13 +56,24 @@ function handleStart() {
             clearInterval(timer);
 
             updateTimer({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+            timeData.disabled = false;
             return;
         }
+        const time = convertMs(deltaTime);
 
+        updateTimer(time);
+    }, 1000);
+}
 
+function updateTimer({ days, hours, minutes, seconds }) {
+    dataDays.textContent = addLeadingZero(days);
+    dataHours.textContent = addLeadingZero(hours);
+    dataMinutes.textContent = addLeadingZero(minutes);
+    dataSeconds.textContent = addLeadingZero(seconds);
+}
 
-    })
-
+function addLeadingZero(value) {
+    return String(value).padStart(2, "0");
 }
 
 function convertMs(ms) {

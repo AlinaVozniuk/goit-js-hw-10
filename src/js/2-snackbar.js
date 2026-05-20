@@ -31,10 +31,10 @@ function handleSubmit(event) {
             });
         })
         .catch(delay => {
-            iziToast.error();
-            ({
-                message: `❌ Rejected promise in ${delay}ms`
-            });
+            iziToast.error
+                ({
+                    message: `❌ Rejected promise in ${delay}ms`
+                });
         });
 
     form.reset();
